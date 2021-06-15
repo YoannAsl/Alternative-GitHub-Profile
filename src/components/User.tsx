@@ -3,6 +3,11 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import GhPoliglot from 'gh-polyglot';
 
+import LanguagesChart from './LanguagesChart';
+import TopReposChart from './TopReposChart';
+import UserInfos from './UserInfos';
+import TopReposList from './TopReposList';
+
 const User = () => {
 	const params: { username: string } = useParams();
 
@@ -49,17 +54,16 @@ const User = () => {
 		const me = new GhPoliglot(`${params.username}`);
 		me.userStats((err: any, stats: any) => {
 			if (err) console.error('Error', err);
-
 			setLanguages(stats);
-			console.log(stats);
 		});
-	});
+	}, [params.username]);
 
 	return (
 		<div>
-			{repos.map((repo: any) => (
-				<li key={repo.id}>{repo.name}</li>
-			))}
+			<UserInfos user={user} />
+			<LanguagesChart languages={languages} />
+			<TopReposChart repos={repos} />
+			<TopReposList repos={repos} />
 		</div>
 	);
 };
