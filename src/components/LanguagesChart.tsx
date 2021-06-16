@@ -5,7 +5,6 @@ interface Props {
 }
 
 const LanguagesChart = ({ languages }: Props) => {
-	console.log(languages);
 	const data = {
 		labels: languages.map((lang) => lang.label),
 		datasets: [
@@ -18,7 +17,6 @@ const LanguagesChart = ({ languages }: Props) => {
 
 	return (
 		<div style={{ height: '300px', width: '300px' }}>
-			LanguageChart
 			<Pie
 				type='pie'
 				data={data}

@@ -7,6 +7,7 @@ import LanguagesChart from './LanguagesChart';
 import TopReposChart from './TopReposChart';
 import UserInfos from './UserInfos';
 import TopReposList from './TopReposList';
+import StarsByLanguageChart from './StarsByLanguageChart';
 
 const User = () => {
 	const params: { username: string } = useParams();
@@ -23,8 +24,6 @@ const User = () => {
 					`https://api.github.com/users/${params.username}`
 				);
 				setUser(req.data);
-
-				console.log(req.data);
 			} catch (error) {
 				console.error(error);
 			}
@@ -40,8 +39,6 @@ const User = () => {
 					`https://api.github.com/users/${params.username}/repos?per_page=100`
 				);
 				setRepos(req.data);
-
-				console.log(req.data);
 			} catch (error) {
 				console.error(error);
 			}
@@ -63,6 +60,7 @@ const User = () => {
 			<UserInfos user={user} />
 			<LanguagesChart languages={languages} />
 			<TopReposChart repos={repos} />
+			<StarsByLanguageChart repos={repos} />
 			<TopReposList repos={repos} />
 		</div>
 	);

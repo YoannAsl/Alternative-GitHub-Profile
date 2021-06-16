@@ -14,12 +14,11 @@ const UserInfos = ({ user }: Props) => {
 			<h2>
 				<a href={user.html_url}>@{user.login}</a>
 			</h2>
-			{user.company && <p>(ADD COMPANY ICON){user.conpany}</p>}
+			{user.company && <p>(ADD COMPANY ICON){user.company}</p>}
 			{user.location && <p>(ADD LOCATION ICON){user.location}</p>}
-			<p></p>
 			{user.created_at && (
 				<p>
-					Joined{' '}
+					(ADD CALENDAR ICON) Joined{' '}
 					{new Date(user.created_at).toLocaleDateString('en-US', {
 						month: 'long',
 						day: 'numeric',
