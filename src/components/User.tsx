@@ -52,6 +52,7 @@ const User = () => {
 		me.userStats((err: any, stats: any) => {
 			if (err) console.error('Error', err);
 			setLanguages(stats);
+			console.log(stats);
 		});
 	}, [params.username]);
 

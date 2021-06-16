@@ -6,11 +6,12 @@ interface Props {
 
 const TopReposList = ({ repos }: Props) => {
 	const [sortBy, setSortBy] = useState('stargazers_count');
-	let topRepos = repos
+
+	const topRepos = repos
 		.filter((repo) => !repo.fork)
 		.sort((a, b) => b[sortBy] - a[sortBy])
 		.splice(0, 8);
-	console.log(topRepos);
+
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
 		setSortBy(e.currentTarget.value);
 
