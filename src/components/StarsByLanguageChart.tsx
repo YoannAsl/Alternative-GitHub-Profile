@@ -1,9 +1,21 @@
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
+import styled from 'styled-components';
+
 import languageColors from './../languageColors';
 
 interface Props {
 	repos: any[];
 }
+
+const Container = styled.div`
+	background-color: white;
+	padding: 2rem 1rem;
+	border-radius: 5px;
+	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	h1 {
+		margin: 0;
+	}
+`;
 
 const StarsByLanguageChart = ({ repos }: Props) => {
 	const filteredRepos = repos.filter(
@@ -32,9 +44,12 @@ const StarsByLanguageChart = ({ repos }: Props) => {
 	};
 
 	return (
-		<div style={{ height: '300px', width: '300px' }}>
-			<Pie type='pie' data={data} />
-		</div>
+		<Container>
+			<header>
+				<h1>Stars per Language</h1>
+			</header>
+			<Doughnut type='pie' data={data} />
+		</Container>
 	);
 };
 
