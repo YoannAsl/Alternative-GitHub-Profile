@@ -1,8 +1,21 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
 interface Props {
 	repos: any[];
 }
+
+const Card = styled.li`
+	border: solid black 1px;
+	background-color: white;
+	a {
+		text-decoration: none;
+		color: rgb(36, 41, 46);
+	}
+	h3 {
+		font-family: 'RobotoMono';
+	}
+`;
 
 const TopReposList = ({ repos }: Props) => {
 	const [sortBy, setSortBy] = useState('stargazers_count');
@@ -16,7 +29,11 @@ const TopReposList = ({ repos }: Props) => {
 		setSortBy(e.currentTarget.value);
 
 	return (
-		<div>
+		<section>
+			<header>
+				<h1>Top Repos</h1>
+			</header>
+			<p>by</p>
 			<select name='sortBy' onChange={handleChange}>
 				<option value='stargazers_count'>Stars</option>
 				<option value='forks'>Forks</option>
@@ -24,18 +41,23 @@ const TopReposList = ({ repos }: Props) => {
 			</select>
 			<ul>
 				{topRepos.map((repo: any) => (
-					<li key={repo.id}>
+					<Card key={repo.id}>
 						<a
 							href={repo.html_url}
 							target='_blank'
 							rel='noreferrer noopener'
 						>
 							<h3>{repo.name}</h3>
+							<p>{repo.description}</p>
+							<p>{repo.language}</p>
+							<p>{repo.stargazers_count}</p>
+							<p>{repo.forks}</p>
+							<p>{repo.size} KB</p>
 						</a>
-					</li>
+					</Card>
 				))}
 			</ul>
-		</div>
+		</section>
 	);
 };
 

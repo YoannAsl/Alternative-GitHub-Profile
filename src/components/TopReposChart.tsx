@@ -10,6 +10,7 @@ const Container = styled.div`
 	padding: 2rem 1rem;
 	border-radius: 5px;
 	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
 	h1 {
 		margin: 0;
 	}
@@ -37,13 +38,19 @@ const TopReposChart = ({ repos }: Props) => {
 			<header>
 				<h1>Most Starred</h1>
 			</header>
-			<Bar
-				type='bar'
-				data={data}
-				options={{
-					plugins: { legend: { display: false } },
-				}}
-			/>
+			<div>
+				<Bar
+					type='bar'
+					data={data}
+					height={300}
+					width={300}
+					options={{
+						maintainAspectRatio: false,
+						responsive: true,
+						plugins: { legend: { display: false } },
+					}}
+				/>
+			</div>
 		</Container>
 	);
 };

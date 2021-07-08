@@ -19,7 +19,7 @@ const ChartsContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 	gap: 2rem;
-	justify-content: center;
+	justify-items: center;
 	max-width: 1200px;
 	padding: 1rem;
 	margin-top: -9rem;
@@ -31,7 +31,7 @@ const User = () => {
 	const [user, setUser] = useState([]);
 	const [repos, setRepos] = useState([]);
 	const [languages, setLanguages] = useState([]);
-
+	console.log(repos);
 	// Gets user infos
 	useEffect(() => {
 		const getUserInfos = async () => {

@@ -17,6 +17,7 @@ const Main = styled.main`
 	}
 	input {
 		padding: 5px 20px;
+		font-family: 'RobotoMono';
 	}
 `;
 

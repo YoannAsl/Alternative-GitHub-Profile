@@ -12,6 +12,7 @@ const Container = styled.div`
 	padding: 2rem 1rem;
 	border-radius: 5px;
 	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
 	h1 {
 		margin: 0;
 	}
@@ -21,14 +22,15 @@ const StarsByLanguageChart = ({ repos }: Props) => {
 	const filteredRepos = repos.filter(
 		(repo) => !repo.fork && repo.stargazers_count > 0 && repo.language
 	);
-	const uniqueLanguages = new Set(filteredRepos.map((repo) => repo.language));
-	const labels: string[] = Array.from(uniqueLanguages.values());
+	const uniqueLanguages = Array.from(
+		new Set(filteredRepos.map((repo) => repo.language))
+	);
 
 	const data = {
-		labels,
+		labels: uniqueLanguages,
 		datasets: [
 			{
-				data: labels.map((lang) => {
+				data: uniqueLanguages.map((lang) => {
 					const repos = filteredRepos.filter(
 						(repo) => repo.language === lang
 					);
@@ -38,7 +40,9 @@ const StarsByLanguageChart = ({ repos }: Props) => {
 					const starsSum = starsArray.reduce((a, b) => a + b);
 					return starsSum;
 				}),
-				backgroundColor: labels.map((label) => languageColors[label]),
+				backgroundColor: uniqueLanguages.map(
+					(lang) => languageColors[lang]
+				),
 			},
 		],
 	};
@@ -48,7 +52,15 @@ const StarsByLanguageChart = ({ repos }: Props) => {
 			<header>
 				<h1>Stars per Language</h1>
 			</header>
-			<Doughnut type='pie' data={data} />
+			<div>
+				<Doughnut
+					type='pie'
+					data={data}
+					height={300}
+					width={300}
+					options={{ maintainAspectRatio: false, responsive: true }}
+				/>
+			</div>
 		</Container>
 	);
 };

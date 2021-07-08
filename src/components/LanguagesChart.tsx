@@ -10,6 +10,7 @@ const Container = styled.div`
 	padding: 2rem 1rem;
 	border-radius: 5px;
 	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
 	h1 {
 		margin: 0;
 	}
@@ -31,13 +32,15 @@ const LanguagesChart = ({ languages }: Props) => {
 			<header>
 				<h1>Top Languages</h1>
 			</header>
-			<Pie
-				type='pie'
-				data={data}
-				// height={50}
-				// width={50}
-				// options={{ maintainAspectRatio: false }}
-			/>
+			<div>
+				<Pie
+					type='pie'
+					data={data}
+					height={300}
+					width={300}
+					options={{ maintainAspectRatio: false, responsive: true }}
+				/>
+			</div>
 		</Container>
 	);
 };
