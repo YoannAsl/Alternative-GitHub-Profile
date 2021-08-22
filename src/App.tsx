@@ -1,15 +1,15 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Home from './components/Home';
-import User from './components/User';
+import HomePage from './pages/HomePage';
+import UserPage from './pages/UserPage';
 
 function App() {
 	return (
 		<div>
 			<BrowserRouter>
 				<Switch>
-					<Route path='/' exact component={Home} />
-					<Route path='/user/:username' component={User} />
+					<Route path='/' exact component={HomePage} />
+					<Route path='/user/:username' component={UserPage} />
 				</Switch>
 			</BrowserRouter>
 		</div>

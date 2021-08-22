@@ -4,34 +4,20 @@ import axios from 'axios';
 import GhPoliglot from 'gh-polyglot';
 import styled from 'styled-components';
 
-import LanguagesChart from './LanguagesChart';
-import TopReposChart from './TopReposChart';
-import UserInfos from './UserInfos';
-import TopReposList from './TopReposList';
-import StarsByLanguageChart from './StarsByLanguageChart';
+import LanguagesChart from '../components/LanguagesChart';
+import TopReposChart from '../components/TopReposChart';
+import UserInfos from '../components/UserInfos';
+import TopReposList from '../components/TopReposList';
+import StarsByLanguageChart from '../components/StarsByLanguageChart';
 
-const Container = styled.div`
-	background-color: rgb(246, 248, 250);
-	padding: 1rem;
-`;
-
-const ChartsContainer = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-	gap: 2rem;
-	justify-items: center;
-	max-width: 1200px;
-	padding: 1rem;
-	margin-top: -9rem;
-`;
-
-const User = () => {
+const UserPage = () => {
 	const params: { username: string } = useParams();
 
-	const [user, setUser] = useState([]);
+	const [user, setUser] = useState({});
 	const [repos, setRepos] = useState([]);
 	const [languages, setLanguages] = useState([]);
-	console.log(repos);
+	// console.log(repos);
+
 	// Gets user infos
 	useEffect(() => {
 		const getUserInfos = async () => {
@@ -49,6 +35,13 @@ const User = () => {
 
 	// Gets user repositories
 	useEffect(() => {
+		// axios
+		// 	.get(
+		// 		`https://api.github.com/users/${params.username}/repos?per_page=100`
+		// 	)
+		// 	.then((res) => setRepos(res.data))
+		// 	.catch((err) => console.error(err));
+
 		const getUserRepos = async () => {
 			try {
 				const req = await axios.get(
@@ -68,6 +61,7 @@ const User = () => {
 		me.userStats((err: any, stats: any) => {
 			if (err) console.error('Error', err);
 			setLanguages(stats);
+
 			console.log(stats);
 		});
 	}, [params.username]);
@@ -87,4 +81,19 @@ const User = () => {
 	);
 };
 
-export default User;
+const Container = styled.div`
+	background-color: rgb(246, 248, 250);
+	padding: 1rem;
+`;
+
+const ChartsContainer = styled.div`
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+	gap: 2rem;
+	justify-items: center;
+	max-width: 1200px;
+	padding: 1rem;
+	margin-top: -9rem;
+`;
+
+export default UserPage;

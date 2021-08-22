@@ -5,17 +5,6 @@ interface Props {
 	repos: any[];
 }
 
-const Container = styled.div`
-	background-color: white;
-	padding: 2rem 1rem;
-	border-radius: 5px;
-	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
-	max-width: 500px;
-	h1 {
-		margin: 0;
-	}
-`;
-
 const TopReposChart = ({ repos }: Props) => {
 	const sortBy = 'stargazers_count';
 	const mostStarredRepos = repos
@@ -54,5 +43,16 @@ const TopReposChart = ({ repos }: Props) => {
 		</Container>
 	);
 };
+
+const Container = styled.div`
+	background-color: white;
+	padding: 2rem 1rem;
+	border-radius: 5px;
+	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	h1 {
+		margin: 0;
+	}
+`;
 
 export default TopReposChart;

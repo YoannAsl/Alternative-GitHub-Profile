@@ -7,6 +7,70 @@ interface Props {
 	user: any;
 }
 
+const UserInfos = ({ user }: Props) => {
+	const {
+		avatar_url,
+		name,
+		html_url,
+		login,
+		company,
+		location,
+		created_at,
+		public_repos,
+		followers,
+		following,
+	} = user;
+
+	return (
+		<Header>
+			<img src={avatar_url} alt='Avatar' />
+			<h1>{name}</h1>
+			<h2>
+				<a href={html_url}>@{login}</a>
+			</h2>
+			<InfosContainer>
+				{company && (
+					<li>
+						<IoBriefcaseOutline />
+						{company}
+					</li>
+				)}
+				{location && (
+					<li>
+						<IoLocationOutline />
+						{location}
+					</li>
+				)}
+				{created_at && (
+					<li>
+						<IoCalendarOutline /> Joined {''}
+						{new Date(created_at).toLocaleDateString('en-US', {
+							month: 'long',
+							day: 'numeric',
+							year: 'numeric',
+						})}
+					</li>
+				)}
+			</InfosContainer>
+
+			<CardsContainer>
+				<li>
+					<p>{public_repos}</p>
+					<p className='card-description'>repositories</p>
+				</li>
+				<li>
+					<p>{followers}</p>
+					<p className='card-description'>followers</p>
+				</li>
+				<li>
+					<p>{following}</p>
+					<p className='card-description'>following</p>
+				</li>
+			</CardsContainer>
+		</Header>
+	);
+};
+
 const Header = styled.header`
 	padding: 4rem 1rem 10rem 1rem;
 	display: flex;
@@ -70,56 +134,5 @@ const CardsContainer = styled.ul`
 		}
 	}
 `;
-
-const UserInfos = ({ user }: Props) => {
-	return (
-		<Header>
-			<img src={user.avatar_url} alt='Avatar' />
-			<h1>{user.name}</h1>
-			<h2>
-				<a href={user.html_url}>@{user.login}</a>
-			</h2>
-			<InfosContainer>
-				{user.company && (
-					<li>
-						<IoBriefcaseOutline />
-						{user.company}
-					</li>
-				)}
-				{user.location && (
-					<li>
-						<IoLocationOutline />
-						{user.location}
-					</li>
-				)}
-				{user.created_at && (
-					<li>
-						<IoCalendarOutline /> Joined {''}
-						{new Date(user.created_at).toLocaleDateString('en-US', {
-							month: 'long',
-							day: 'numeric',
-							year: 'numeric',
-						})}
-					</li>
-				)}
-			</InfosContainer>
-
-			<CardsContainer>
-				<li>
-					<p>{user.public_repos}</p>
-					<p className='card-description'>repositories</p>
-				</li>
-				<li>
-					<p>{user.followers}</p>
-					<p className='card-description'>followers</p>
-				</li>
-				<li>
-					<p>{user.following}</p>
-					<p className='card-description'>following</p>
-				</li>
-			</CardsContainer>
-		</Header>
-	);
-};
 
 export default UserInfos;

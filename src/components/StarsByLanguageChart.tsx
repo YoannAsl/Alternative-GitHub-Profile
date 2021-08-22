@@ -7,17 +7,6 @@ interface Props {
 	repos: any[];
 }
 
-const Container = styled.div`
-	background-color: white;
-	padding: 2rem 1rem;
-	border-radius: 5px;
-	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
-	max-width: 500px;
-	h1 {
-		margin: 0;
-	}
-`;
-
 const StarsByLanguageChart = ({ repos }: Props) => {
 	const filteredRepos = repos.filter(
 		(repo) => !repo.fork && repo.stargazers_count > 0 && repo.language
@@ -64,5 +53,16 @@ const StarsByLanguageChart = ({ repos }: Props) => {
 		</Container>
 	);
 };
+
+const Container = styled.div`
+	background-color: white;
+	padding: 2rem 1rem;
+	border-radius: 5px;
+	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	h1 {
+		margin: 0;
+	}
+`;
 
 export default StarsByLanguageChart;

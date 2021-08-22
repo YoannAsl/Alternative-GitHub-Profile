@@ -5,18 +5,6 @@ interface Props {
 	repos: any[];
 }
 
-const Card = styled.li`
-	border: solid black 1px;
-	background-color: white;
-	a {
-		text-decoration: none;
-		color: rgb(36, 41, 46);
-	}
-	h3 {
-		font-family: 'RobotoMono';
-	}
-`;
-
 const TopReposList = ({ repos }: Props) => {
 	const [sortBy, setSortBy] = useState('stargazers_count');
 
@@ -60,5 +48,17 @@ const TopReposList = ({ repos }: Props) => {
 		</section>
 	);
 };
+
+const Card = styled.li`
+	border: solid black 1px;
+	background-color: white;
+	a {
+		text-decoration: none;
+		color: rgb(36, 41, 46);
+	}
+	h3 {
+		font-family: 'RobotoMono';
+	}
+`;
 
 export default TopReposList;
