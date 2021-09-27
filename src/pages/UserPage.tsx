@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import axios from 'axios';
 import GhPoliglot from 'gh-polyglot';
 import styled from 'styled-components';
 
@@ -30,67 +29,35 @@ const UserPage = () => {
     const [repos, setRepos] = useState([]);
     const [languages, setLanguages] = useState([]);
 
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const lang = new GhPoliglot(`${params.username}`);
-    //         lang.userStats((err: any, stats: any) => {
-    //             if (err) console.error('Error', err);
-    //             setLanguages(stats);
-    //         });
-    //         try {
-    //             const userInfos = await axios.get(
-    //                 `https://api.github.com/users/${params.username}`
-    //             );
-    //             const userRepos = await axios.get(
-    //                 `https://api.github.com/users/${params.username}/repos?per_page=100`
-    //             );
-
-    //             setUser(userInfos.data);
-    //             setRepos(userRepos.data);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-    //     getData();
-    // }, [params.username]);
-
-    // Gets user infos
     useEffect(() => {
-        const getUserInfos = async () => {
-            try {
-                const req = await axios.get(
-                    `https://api.github.com/users/${params.username}`
+        const getData = async () => {
+            const userLanguages = new GhPoliglot(`${params.username}`);
+            userLanguages.userStats((err: any, stats: any) => {
+                if (err)
+                    console.error('Error while fetching user languages', err);
+                setLanguages(stats);
+            });
+
+            const userInfos = await fetch(
+                `https://api.github.com/users/${params.username}`
+            )
+                .then((data) => data.json())
+                .catch((err) =>
+                    console.error('Error while fetching user infos', err)
                 );
-                setUser(req.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        getUserInfos();
-    }, [params.username]);
 
-    // Gets user repositories
-    useEffect(() => {
-        const getUserRepos = async () => {
-            try {
-                const req = await axios.get(
-                    `https://api.github.com/users/${params.username}/repos?per_page=100`
+            const userRepos = await fetch(
+                `https://api.github.com/users/${params.username}/repos?per_page=100`
+            )
+                .then((data) => data.json())
+                .catch((err) =>
+                    console.error('Error while fetching user repos', err)
                 );
-                setRepos(req.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        getUserRepos();
-    }, [params.username]);
 
-    // Gets languages used by user
-    useEffect(() => {
-        const me = new GhPoliglot(`${params.username}`);
-        me.userStats((err: any, stats: any) => {
-            if (err) console.error('Error', err);
-            setLanguages(stats);
-        });
+            setUser(userInfos);
+            setRepos(userRepos);
+        };
+        getData();
     }, [params.username]);
 
     return (
@@ -110,19 +77,18 @@ const UserPage = () => {
 
 const Container = styled.div`
     background-color: rgb(246, 248, 250);
-    padding: 1rem;
 `;
 
 const ChartsContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
-    justify-items: center;
+    /* justify-content: center; */
     max-width: 1200px;
-    padding: 1rem;
-    margin-top: -9rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: -8rem;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    padding: 3rem 5rem;
 `;
 
 export default UserPage;
