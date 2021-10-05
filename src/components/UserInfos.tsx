@@ -75,65 +75,75 @@ const UserInfos = ({ user }: Props) => {
 };
 
 const Header = styled.header`
-    padding: 4rem 1rem 10rem 1rem;
+    padding: 5rem 1rem 16rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: hsl(210, 13%, 12%);
     img {
-        height: 150px;
-        width: 150px;
+        height: 15rem;
+        width: 15rem;
         border-radius: 50%;
+        margin-bottom: 3rem;
     }
     h1 {
         color: white;
         margin: 0;
         font-weight: 500;
+        font-size: 4rem;
+        margin-bottom: 1rem;
     }
-    a {
-        font-weight: 400;
-        font-family: 'RobotoMono';
-        color: rgb(0, 112, 243);
-        text-decoration: none;
+    h2 {
+        margin-bottom: 1.5rem;
+        a {
+            font-weight: 400;
+            font-family: 'RobotoMono';
+            color: rgb(0, 112, 243);
+            text-decoration: none;
+            font-size: 2.5rem;
+        }
     }
 `;
 
 const InfosContainer = styled.ul`
     display: flex;
-    flex-direction: column;
+    margin-bottom: 3rem;
     li {
         display: flex;
         color: white;
-        margin: 0;
-        margin-bottom: 0.6rem;
+        margin: 0 1.2rem 0.6rem;
         align-items: center;
-        justify-content: center;
+        font-size: 1.6rem;
+        color: rgb(200, 225, 255);
         svg {
-            margin-right: 5px;
+            margin-right: 0.7rem;
         }
     }
 `;
 
 const CardsContainer = styled.ul`
     display: grid;
-    grid-template-columns: repeat(3, minmax(90px, 150px));
+    grid-template-columns: repeat(3, minmax(9rem, 15rem));
     gap: 1rem;
-    margin-top: 2rem;
+
     li {
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: hsl(210, 13%, 19%);
-        border-radius: 5px;
-        padding: 1rem 0.5rem;
+        border-radius: 0.5rem;
+        padding: 2rem;
         p {
             color: white;
             margin: 0;
+            font-size: 2.2rem;
         }
         .card-description {
             text-transform: uppercase;
-            font-size: 0.55rem;
-            letter-spacing: 1px;
+            font-size: 1.2rem;
+            letter-spacing: 0.12rem;
+            margin-top: 1rem;
+            color: rgba(200, 225, 255, 0.7);
         }
     }
 `;

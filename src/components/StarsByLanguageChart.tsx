@@ -4,65 +4,65 @@ import styled from 'styled-components';
 import languageColors from './../languageColors';
 
 interface Props {
-	repos: any[];
+    repos: any[];
 }
 
 const StarsByLanguageChart = ({ repos }: Props) => {
-	const filteredRepos = repos.filter(
-		(repo) => !repo.fork && repo.stargazers_count > 0 && repo.language
-	);
-	const uniqueLanguages = Array.from(
-		new Set(filteredRepos.map((repo) => repo.language))
-	);
+    const filteredRepos = repos.filter(
+        (repo) => !repo.fork && repo.stargazers_count > 0 && repo.language
+    );
+    const uniqueLanguages = Array.from(
+        new Set(filteredRepos.map((repo) => repo.language))
+    );
 
-	const data = {
-		labels: uniqueLanguages,
-		datasets: [
-			{
-				data: uniqueLanguages.map((lang) => {
-					const repos = filteredRepos.filter(
-						(repo) => repo.language === lang
-					);
-					const starsArray = repos.map(
-						(repo) => repo.stargazers_count
-					);
-					const starsSum = starsArray.reduce((a, b) => a + b);
-					return starsSum;
-				}),
-				backgroundColor: uniqueLanguages.map(
-					(lang) => languageColors[lang]
-				),
-			},
-		],
-	};
+    const data = {
+        labels: uniqueLanguages,
+        datasets: [
+            {
+                data: uniqueLanguages.map((lang) => {
+                    const repos = filteredRepos.filter(
+                        (repo) => repo.language === lang
+                    );
+                    const starsArray = repos.map(
+                        (repo) => repo.stargazers_count
+                    );
+                    const starsSum = starsArray.reduce((a, b) => a + b);
+                    return starsSum;
+                }),
+                backgroundColor: uniqueLanguages.map(
+                    (lang) => languageColors[lang]
+                ),
+            },
+        ],
+    };
 
-	return (
-		<Container>
-			<header>
-				<h1>Stars per Language</h1>
-			</header>
-			<div>
-				<Doughnut
-					type='pie'
-					data={data}
-					height={300}
-					width={300}
-					options={{ maintainAspectRatio: false, responsive: true }}
-				/>
-			</div>
-		</Container>
-	);
+    return (
+        <Container>
+            <header>
+                <h1>Stars per Language</h1>
+            </header>
+            <div>
+                <Doughnut
+                    type='pie'
+                    data={data}
+                    height={300}
+                    width={300}
+                    options={{ maintainAspectRatio: false, responsive: true }}
+                />
+            </div>
+        </Container>
+    );
 };
 
 const Container = styled.div`
-	background-color: white;
-	padding: 2rem 1rem;
-	border-radius: 5px;
-	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
-	max-width: 500px;
-	h1 {
-		margin: 0;
-	}
+    background-color: white;
+    padding: 2rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0rem 0.5rem 3rem rgba(0, 0, 0, 0.1);
+    max-width: 50rem;
+    h1 {
+        margin: 0;
+    }
 `;
 
 export default StarsByLanguageChart;

@@ -81,13 +81,12 @@ const Container = styled.div`
 
 const ChartsContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 2rem;
-    /* justify-content: center; */
     max-width: 1200px;
-    margin-top: -8rem;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
+    /* margin-top: -8rem; */
+    margin-left: auto;
+    margin-right: auto;
     padding: 3rem 5rem;
 `;
 
