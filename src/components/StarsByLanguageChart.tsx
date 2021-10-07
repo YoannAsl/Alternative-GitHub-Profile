@@ -1,7 +1,7 @@
 import { Doughnut } from 'react-chartjs-2';
 import styled from 'styled-components';
 
-import languageColors from './../languageColors';
+import languageColors from '../utils/languageColors';
 
 interface Props {
     repos: any[];
@@ -19,18 +19,19 @@ const StarsByLanguageChart = ({ repos }: Props) => {
         labels: uniqueLanguages,
         datasets: [
             {
-                data: uniqueLanguages.map((lang) => {
+                data: uniqueLanguages.map((language) => {
                     const repos = filteredRepos.filter(
-                        (repo) => repo.language === lang
+                        (repo) => repo.language === language
                     );
                     const starsArray = repos.map(
                         (repo) => repo.stargazers_count
                     );
                     const starsSum = starsArray.reduce((a, b) => a + b);
+
                     return starsSum;
                 }),
                 backgroundColor: uniqueLanguages.map(
-                    (lang) => languageColors[lang]
+                    (language) => languageColors[language]
                 ),
             },
         ],

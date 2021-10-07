@@ -80,8 +80,9 @@ const CardsContainer = styled.ul`
 const Card = styled.li`
     a {
         background-color: white;
-        box-shadow: rgba(0, 0, 0, 0.2) 0 0.1rem 0.3rem -0.15rem;
-        transition: all 0.2s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 1rem 3rem -1.5rem;
+        border-radius: 0.25rem;
+        transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
         padding: 2rem;
         color: rgb(88, 96, 105);
         height: 100%;
@@ -103,8 +104,9 @@ const Card = styled.li`
         display: flex;
         font-size: 1.3rem;
     }
-    &:hover {
-        transform: scale(1.01);
+    &:hover,
+    &:focus {
+        box-shadow: 0 0.8rem 2rem -1.5rem rgba(0, 0, 0, 0.2);
     }
 `;
 

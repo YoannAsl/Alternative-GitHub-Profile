@@ -119,13 +119,15 @@ const InfosContainer = styled.ul`
             margin-right: 0.7rem;
         }
     }
+    @media (max-width: 37.5em) {
+        flex-direction: column;
+    }
 `;
 
 const CardsContainer = styled.ul`
     display: grid;
     grid-template-columns: repeat(3, minmax(9rem, 15rem));
     gap: 1rem;
-
     li {
         display: flex;
         flex-direction: column;

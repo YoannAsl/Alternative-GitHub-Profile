@@ -75,15 +75,14 @@ const UserPage = () => {
     );
 };
 
-const Container = styled.div`
-    background-color: rgb(246, 248, 250);
-`;
+const Container = styled.div``;
 
 const ChartsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 2rem;
     max-width: 1200px;
+    /* width: fit-content; */
     /* margin-top: -8rem; */
     margin-left: auto;
     margin-right: auto;
