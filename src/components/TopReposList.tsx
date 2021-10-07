@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import languageColors from '../utils/languageColors';
 
 interface Props {
     repos: any[];
@@ -28,7 +29,7 @@ const TopReposList = ({ repos }: Props) => {
                 </select>
             </Header>
             <CardsContainer>
-                {topRepos.map((repo: any) => (
+                {topRepos.map((repo) => (
                     <Card key={repo.id}>
                         <a
                             href={repo.html_url}
@@ -39,14 +40,23 @@ const TopReposList = ({ repos }: Props) => {
                             <p className='repo-description'>
                                 {repo.description}
                             </p>
-                            <div>
-                                <p className='repo-language'>{repo.language}</p>
-                                <p className='repo-likes'>
-                                    {repo.stargazers_count}
-                                </p>
-                                <p className='repo-forks'>{repo.forks}</p>
+                            <RepoStats>
+                                <RepoStatsLeft>
+                                    <Language>
+                                        <LanguageColor
+                                            background={
+                                                languageColors[repo.language]
+                                            }
+                                        />
+                                        {repo.language}
+                                    </Language>
+                                    <p className='repo-likes'>
+                                        {repo.stargazers_count}
+                                    </p>
+                                    <p className='repo-forks'>{repo.forks}</p>
+                                </RepoStatsLeft>
                                 <p className='repo-size'>{repo.size} KB</p>
-                            </div>
+                            </RepoStats>
                         </a>
                     </Card>
                 ))}
@@ -100,14 +110,34 @@ const Card = styled.li`
     .repo-description {
         font-size: 1.4rem;
     }
-    div {
-        display: flex;
-        font-size: 1.3rem;
-    }
     &:hover,
     &:focus {
         box-shadow: 0 0.8rem 2rem -1.5rem rgba(0, 0, 0, 0.2);
     }
+`;
+
+const RepoStats = styled.div`
+    display: flex;
+    font-size: 1.3rem;
+    justify-content: space-between;
+`;
+
+const RepoStatsLeft = styled.div`
+    display: flex;
+    gap: 0.5rem;
+`;
+
+const Language = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const LanguageColor = styled.div<{ background: string }>`
+    background-color: ${(props) => props.background};
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
 `;
 
 export default TopReposList;

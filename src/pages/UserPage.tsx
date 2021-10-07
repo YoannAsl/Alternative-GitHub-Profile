@@ -82,7 +82,6 @@ const ChartsContainer = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 2rem;
     max-width: 1200px;
-    /* width: fit-content; */
     /* margin-top: -8rem; */
     margin-left: auto;
     margin-right: auto;
