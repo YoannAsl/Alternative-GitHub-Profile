@@ -17,7 +17,14 @@ const TopReposChart = ({ repos }: Props) => {
         datasets: [
             {
                 data: mostStarredRepos.map((repo) => repo[sortBy]),
-                backgroundColor: ['#ff6f6fac'],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
+                    'rgb(255, 159, 64)',
+                ],
             },
         ],
     };
