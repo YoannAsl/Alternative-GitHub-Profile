@@ -34,19 +34,17 @@ const TopReposChart = ({ repos }: Props) => {
             <header>
                 <h1>Most Starred</h1>
             </header>
-            <div>
+            <ChartContainer>
                 <Bar
                     type='bar'
                     data={data}
-                    height={300}
-                    width={300}
                     options={{
                         maintainAspectRatio: false,
                         responsive: true,
                         plugins: { legend: { display: false } },
                     }}
                 />
-            </div>
+            </ChartContainer>
         </Container>
     );
 };
@@ -60,6 +58,12 @@ const Container = styled.div`
     h1 {
         margin: 0;
     }
+    @media (max-width: 25em) {
+    }
+`;
+
+const ChartContainer = styled.div`
+    height: 30rem;
 `;
 
 export default TopReposChart;

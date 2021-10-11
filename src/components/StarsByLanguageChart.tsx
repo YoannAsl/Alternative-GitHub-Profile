@@ -42,15 +42,13 @@ const StarsByLanguageChart = ({ repos }: Props) => {
             <header>
                 <h1>Stars per Language</h1>
             </header>
-            <div>
+            <ChartContainer>
                 <Doughnut
                     type='pie'
                     data={data}
-                    height={300}
-                    width={300}
                     options={{ maintainAspectRatio: false, responsive: true }}
                 />
-            </div>
+            </ChartContainer>
         </Container>
     );
 };
@@ -64,6 +62,10 @@ const Container = styled.div`
     h1 {
         margin: 0;
     }
+`;
+
+const ChartContainer = styled.div`
+    height: 30rem;
 `;
 
 export default StarsByLanguageChart;

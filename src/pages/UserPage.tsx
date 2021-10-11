@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import GhPoliglot from 'gh-polyglot';
 import styled from 'styled-components';
 
+import Section from '../styles/Section';
 import LanguagesChart from '../components/LanguagesChart';
 import TopReposChart from '../components/TopReposChart';
 import UserInfos from '../components/UserInfos';
@@ -63,29 +64,25 @@ const UserPage = () => {
     return (
         <main>
             <UserInfos user={user} />
-            <Container>
+            <Section>
                 <ChartsContainer>
                     <LanguagesChart languages={languages} />
                     <TopReposChart repos={repos} />
                     <StarsByLanguageChart repos={repos} />
                 </ChartsContainer>
-                <TopReposList repos={repos} />
-            </Container>
+            </Section>
+            <TopReposList repos={repos} />
         </main>
     );
 };
-
-const Container = styled.div``;
 
 const ChartsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 2rem;
     max-width: 1200px;
-    /* margin-top: -8rem; */
-    margin-left: auto;
-    margin-right: auto;
-    padding: 3rem 5rem;
+    margin-top: -10rem !important;
+    margin: 0 auto;
 `;
 
 export default UserPage;
