@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import GhPoliglot from 'gh-polyglot';
 import styled from 'styled-components';
 
-import Section from '../styles/Section';
+import { Section } from '../styles';
 import LanguagesChart from '../components/LanguagesChart';
 import TopReposChart from '../components/TopReposChart';
 import UserInfos from '../components/UserInfos';

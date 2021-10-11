@@ -132,7 +132,7 @@ const CardsContainer = styled.ul`
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: hsl(210, 13%, 19%);
+        background-color: rgb(36, 41, 46);
         border-radius: 0.5rem;
         padding: 2rem;
         p {

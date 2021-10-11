@@ -1,6 +1,8 @@
 import { Bar } from 'react-chartjs-2';
 import styled from 'styled-components';
 
+import { ChartContainer, ChartHeader } from '../styles';
+
 interface Props {
     repos: any[];
 }
@@ -23,18 +25,17 @@ const TopReposChart = ({ repos }: Props) => {
                     'rgb(255, 206, 86)',
                     'rgb(75, 192, 192)',
                     'rgb(153, 102, 255)',
-                    'rgb(255, 159, 64)',
                 ],
             },
         ],
     };
 
     return (
-        <Container>
-            <header>
+        <ChartContainer>
+            <ChartHeader>
                 <h1>Most Starred</h1>
-            </header>
-            <ChartContainer>
+            </ChartHeader>
+            <ChartWrapper>
                 <Bar
                     type='bar'
                     data={data}
@@ -44,25 +45,12 @@ const TopReposChart = ({ repos }: Props) => {
                         plugins: { legend: { display: false } },
                     }}
                 />
-            </ChartContainer>
-        </Container>
+            </ChartWrapper>
+        </ChartContainer>
     );
 };
 
-const Container = styled.div`
-    background-color: white;
-    padding: 2rem 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0rem 0.5rem 3rem rgba(0, 0, 0, 0.1);
-    max-width: 50rem;
-    h1 {
-        margin: 0;
-    }
-    @media (max-width: 25em) {
-    }
-`;
-
-const ChartContainer = styled.div`
+const ChartWrapper = styled.div`
     height: 30rem;
 `;
 

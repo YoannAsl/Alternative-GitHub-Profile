@@ -2,6 +2,7 @@ import { Doughnut } from 'react-chartjs-2';
 import styled from 'styled-components';
 
 import languageColors from '../utils/languageColors';
+import { ChartContainer, ChartHeader } from '../styles';
 
 interface Props {
     repos: any[];
@@ -38,33 +39,22 @@ const StarsByLanguageChart = ({ repos }: Props) => {
     };
 
     return (
-        <Container>
-            <header>
+        <ChartContainer>
+            <ChartHeader>
                 <h1>Stars per Language</h1>
-            </header>
-            <ChartContainer>
+            </ChartHeader>
+            <ChartWrapper>
                 <Doughnut
                     type='pie'
                     data={data}
                     options={{ maintainAspectRatio: false, responsive: true }}
                 />
-            </ChartContainer>
-        </Container>
+            </ChartWrapper>
+        </ChartContainer>
     );
 };
 
-const Container = styled.div`
-    background-color: white;
-    padding: 2rem 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0rem 0.5rem 3rem rgba(0, 0, 0, 0.1);
-    max-width: 50rem;
-    h1 {
-        margin: 0;
-    }
-`;
-
-const ChartContainer = styled.div`
+const ChartWrapper = styled.div`
     height: 30rem;
 `;
 
